@@ -18,5 +18,3 @@ use App\Http\Controllers\FormController;
 Route::get('/', [FormController::class, 'index']);
 
 Route::post('/form', [FormController::class, 'store']);
-
-Route::get('/preview', [FormController::class, 'result']);

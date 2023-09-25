@@ -12,28 +12,58 @@
 <body>
     <section class="container">
         <h1>Forms</h1>
+
+        @if (session()->has('results'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @foreach (session('results') as $key => $value)
+                    <p>{{ $key }} = {{ $value }}</p>
+                @endforeach
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+
         <form method="POST" action="/form">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="email" class="form-control" id="name" name="name" placeholder="Joko Ndokondo">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Joko Ndokondo"
+                    value="{{ old('name') }}">
+                @error('name')
+                    <div class="alert alert-danger fs-6 text">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                    value="{{ old('email') }}">
+                @error('email')
+                    <div class="alert alert-danger fs-6 text">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="value" class="form-label">Value (2.50 - 99.99)</label>
-                <input type="value" class="form-control" id="value" name="value" placeholder="77.77">
+                <input type="value" class="form-control" id="value" name="value" placeholder="77.77"
+                    value="{{ old('value') }}"">
+                @error('value')
+                    <div class="alert alert-danger fs-6 text">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Jalan Raya Jogja-Solo No. 128"></textarea>
+                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Jalan Raya Jogja-Solo No. 128"
+                    value="{{ old('address') }}""></textarea>
+                @error('address')
+                    <div class="alert alert-danger fs-6 text">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="image" name="image">
-              </div>
+                <input class="form-control" type="file" id="image" name="image" value="{{ old('image') }}"">
+                @error('image')
+                    <div class="alert alert-danger fs-6 text">{{ $message }}</div>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </section>
