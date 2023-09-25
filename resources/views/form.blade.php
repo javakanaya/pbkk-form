@@ -23,7 +23,7 @@
         @endif
 
 
-        <form method="POST" action="/form">
+        <form method="POST" action="/form" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -51,15 +51,14 @@
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Jalan Raya Jogja-Solo No. 128"
-                    value="{{ old('address') }}""></textarea>
+                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Jalan Raya Jogja-Solo No. 128"></textarea>
                 @error('address')
                     <div class="alert alert-danger fs-6 text">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="image" name="image" value="{{ old('image') }}"">
+                <input class="form-control" type="file" id="image" name="image" accept="image/*">
                 @error('image')
                     <div class="alert alert-danger fs-6 text">{{ $message }}</div>
                 @enderror
