@@ -27,13 +27,12 @@ class FormController extends Controller
         $request->image->storeAs('images', $request->image->getClientOriginalName(), 'public');
 
         $results = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'value' => $request->value,
-            'address' => $request->address,
-            'image' => $request->image->getClientOriginalName(),
+            'Name' => $request->name,
+            'Email' => $request->email,
+            'Value' => $request->value,
+            'Address' => $request->address,
         ];
 
-        return redirect('/')->with(['results' => $results, 'status' => 'form submitted']);
+        return redirect('/')->with(['results' => $results, 'image' => $request->image->getClientOriginalName()]);
     }
 }
